@@ -373,8 +373,8 @@ def probe_strength(db, raw_scores):
     max_len = max(len(val) for val in probe_matches.values())
     max_hits = max(probe_presence.values())
 
-    return {name: len(val) / max_len * probe_presence.get(name, 0) / max_hits
-            for name, val in probe_matches.items()}
+    return dir((name, len(val) / max_len * probe_presence.get(name, 0) / max_hits)
+               for name, val in probe_matches.items())
 
 def quick_probe(ipaddress, port, starttls, db):
     # try to as quickly as possible reach 10 matching probes
